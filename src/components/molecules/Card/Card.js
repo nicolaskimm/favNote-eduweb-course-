@@ -67,24 +67,16 @@ const StyledLinkButton = styled.a`
   transform: translateY(-50%);
 `;
 
-const Card = ({ cardType }) => (
+const Card = ({ cardType, title, created, twitterName, articleUrl, content }) => (
   <StyledWrapper>
     <InnerWrapper activeColor={cardType}>
-      <StyledHeading>siemson!</StyledHeading>
-      <DateInfo>3 days</DateInfo>
-      {cardType === 'twitter' && <StyledAvatar src="https://avatars.io/twitter/helloroman" />}
-      {cardType === 'article' && <StyledLinkButton href="https://www.avatars.io/" />}
+      <StyledHeading>{title}</StyledHeading>
+      <DateInfo>{created}</DateInfo>
+      {cardType === 'twitter' && <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />}
+      {cardType === 'article' && <StyledLinkButton href={articleUrl} />}
     </InnerWrapper>
     <InnerWrapper flex>
-      <Paragraph>
-        Potra nome nostri allo i degli esse da. Vita la la del alla e. Suoi cosa di in fa che
-        mescolati, e audaci noi etterno nel procuratori dinanzi accio la novellare, cospetto che se
-        occulta merito beato, noi alla cose di angoscia noi giudice forse. E furono alcun dio
-        ammirabile. Coloro il fosse lodato sí senza facciamo il coloro essilio, esso noi tanto
-        facitore avvedimento cominciamento raccontare a, nostri novella di parte. Convenevole
-        ingannati coloro da divina allo da, per di piú per nostri, niuno uomini propria che
-        iscacciato in divenuti come, tutte maravigliose fallo porgere come, santo suo.
-      </Paragraph>
+      <Paragraph>{content}</Paragraph>
       <Button secondary>REMOVE</Button>
     </InnerWrapper>
   </StyledWrapper>
@@ -92,10 +84,17 @@ const Card = ({ cardType }) => (
 
 Card.propTypes = {
   cardType: PropTypes.oneOf(['note', 'twitter', 'article']),
+  title: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  twitterName: PropTypes.string,
+  articleUrl: PropTypes.string,
+  content: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
   cardType: 'note',
+  twitterName: null,
+  articleUrl: null,
 };
 
 export default Card;
