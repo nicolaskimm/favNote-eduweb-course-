@@ -22,6 +22,6 @@ storiesOf('Atoms/ButtonIcon', module)
   .add('Bulb', () => <ButtonIcon icon={bulbIcon} />)
   .add('Logout', () => <ButtonIcon icon={logoutIcon} />)
   .add('LogoutActive', () => <ButtonIcon icon={logoutIcon} />)
-  .add('Plus', () => <ButtonIcon icon={penIcon} />)
-  .add('Pen', () => <ButtonIcon icon={plusIcon} />)
+  .add('Plus', () => <ButtonIcon icon={plusIcon} />)
+  .add('Pen', () => <ButtonIcon icon={penIcon} />)
   .add('Twitter', () => <ButtonIcon icon={twitterIcon} />);

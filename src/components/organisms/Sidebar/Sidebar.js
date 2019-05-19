@@ -16,7 +16,7 @@ const StyledSidebar = styled.div`
   padding: 25px 0;
   width: 150px;
   height: 100vh;
-  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.note)};
+  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.notes)};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,10 +47,10 @@ const StyledLinksList = styled.ul`
 
 const Sidebar = ({ pageType }) => (
   <StyledSidebar activeColor={pageType}>
-    <StyledLogoLink />
+    <StyledLogoLink to="/" />
     <StyledLinksList>
       <li>
-        <ButtonIcon exact as={NavLink} to="/" icon={penIcon} activeclass="active" />
+        <ButtonIcon as={NavLink} to="/notes" icon={penIcon} activeclass="active" />
       </li>
       <li>
         <ButtonIcon as={NavLink} to="/twitters" icon={twitterIcon} activeclass="active" />
@@ -64,7 +64,11 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-  pageType: PropTypes.string.isRequired,
+  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+};
+
+Sidebar.defaultProps = {
+  pageType: 'notes',
 };
 
 export default Sidebar;
