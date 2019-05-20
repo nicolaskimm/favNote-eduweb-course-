@@ -1,10 +1,10 @@
 export const routes = {
   home: '/',
   notes: '/notes',
+  note: '/notes/:id',
   twitters: '/twitters',
+  twitter: '/twitters/:id',
   articles: '/articles',
   article: '/articles/:id',
-  twitter: '/twitters/:id',
-  note: '/notes/:id',
   login: '/login',
 };

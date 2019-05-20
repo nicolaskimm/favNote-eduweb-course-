@@ -64,7 +64,7 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles', '']),
 };
 
 Sidebar.defaultProps = {
