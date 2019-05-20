@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
+import { removeItem as removeItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -76,7 +78,16 @@ class Card extends Component {
   handleCardClick = () => this.setState({ redirect: true });
 
   render() {
-    const { id, cardType, title, created, twitterName, articleUrl, content } = this.props;
+    const {
+      id,
+      cardType,
+      title,
+      created,
+      twitterName,
+      articleUrl,
+      content,
+      removeItem,
+    } = this.props;
 
     if (this.state.redirect) {
       return <Redirect to={`${cardType}/${id}`} />;
@@ -94,7 +105,9 @@ class Card extends Component {
         </InnerWrapper>
         <InnerWrapper flex>
           <Paragraph>{content}</Paragraph>
-          <Button secondary>REMOVE</Button>
+          <Button secondary onClick={() => removeItem(cardType, id)}>
+            REMOVE
+          </Button>
         </InnerWrapper>
       </StyledWrapper>
     );
@@ -109,6 +122,7 @@ Card.propTypes = {
   articleUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  removeItem: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -117,4 +131,11 @@ Card.defaultProps = {
   articleUrl: null,
 };
 
-export default Card;
+const mapDispatchToProps = dispatch => ({
+  removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Card);

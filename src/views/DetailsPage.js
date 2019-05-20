@@ -51,7 +51,9 @@ class DetailsPage extends Component {
 }
 
 DetailsPage.propTypes = {
-  match: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.bool]).isRequired,
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default DetailsPage;
