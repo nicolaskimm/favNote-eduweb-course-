@@ -5,7 +5,7 @@ import GridTemplate from 'components/templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 
 const Notes = ({ notes }) => (
-  <GridTemplate pageType="notes">
+  <GridTemplate>
     {notes.map(item => (
       <Card
         id={item.id}
@@ -25,7 +25,18 @@ const mapStateToProps = state => {
 };
 
 Notes.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Notes.defaultProps = {
+  notes: [],
 };
 
 export default connect(mapStateToProps)(Notes);
