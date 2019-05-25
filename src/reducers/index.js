@@ -1,7 +1,9 @@
+import uuidv4 from 'uuid';
+
 const initialState = {
   twitters: [
     {
-      id: 1,
+      id: uuidv4(),
       title: 'Hello Roman',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -9,7 +11,7 @@ const initialState = {
       twitterName: 'hello_roman',
     },
     {
-      id: 2,
+      id: uuidv4(),
       title: 'Redux guy',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -17,7 +19,7 @@ const initialState = {
       twitterName: 'dan_abramov',
     },
     {
-      id: 3,
+      id: uuidv4(),
       title: 'React router stuff',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -27,28 +29,28 @@ const initialState = {
   ],
   notes: [
     {
-      id: 1,
+      id: uuidv4(),
       title: 'Wake me up when Vue ends',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
       created: '1 day',
     },
     {
-      id: 2,
+      id: uuidv4(),
       title: 'Como es An Gular?',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
       created: '1 day',
     },
     {
-      id: 3,
+      id: uuidv4(),
       title: 'Du bist Reactish',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
       created: '5 days',
     },
     {
-      id: 4,
+      id: uuidv4(),
       title: 'Reactuj się kto moze!',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -57,7 +59,7 @@ const initialState = {
   ],
   articles: [
     {
-      id: 1,
+      id: uuidv4(),
       title: 'React on my mind',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -65,7 +67,7 @@ const initialState = {
       created: '1 day',
     },
     {
-      id: 2,
+      id: uuidv4(),
       title: 'Wish you React',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -73,7 +75,7 @@ const initialState = {
       created: '1 day',
     },
     {
-      id: 3,
+      id: uuidv4(),
       title: 'You gave React a bad name',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -81,7 +83,7 @@ const initialState = {
       created: '5 days',
     },
     {
-      id: 4,
+      id: uuidv4(),
       title: 'Is it React you looking for?',
       content:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -93,6 +95,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'ADD_ITEM':
+      return {
+        ...state,
+        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.item],
+      };
     case 'REMOVE_ITEM':
       return {
         ...state,

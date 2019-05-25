@@ -116,13 +116,13 @@ class Card extends Component {
 }
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 
@@ -133,7 +133,7 @@ Card.defaultProps = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+  removeItem: (itemType, id, itemContent) => dispatch(removeItemAction(itemType, id, itemContent)),
 });
 
 export default connect(
